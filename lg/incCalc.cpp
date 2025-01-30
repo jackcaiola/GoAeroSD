@@ -118,29 +118,10 @@ int main(int argc, char **argv) {
     for (int i = 0; i < 4; i++) {
         points[i][2] = max_z - raw_z[i];
     }
-
-    std::cout << "\nLeg 1 range value: " << raw_z[0] << received_leg1 << endl;
-        std::cout << "\nLeg 2 range value: " << raw_z[1] << received_leg2 << endl;
-            std::cout << "\nLeg 3 range value: " << raw_z[2] << received_leg3 << endl;
-                std::cout << "\nLeg 4 range value: " << raw_z[3] << received_leg4 << endl;
-    std::cout << "\nLargest value: " << max_z << endl;
     
-    // Output the final z-values
-    cout << "\nCalculated z-values for the points:" << endl;
-    for (int i = 0; i < 4; i++) {
-        cout << "Point (" << points[i][0] << ", " << points[i][1] << "): z = " << points[i][2] << endl;
-    }
-
     // Calculate the plane equation from points P1, P2, P3
     double a, b, c, d;
     calculatePlaneEquation(points[0], points[1], points[2], a, b, c, d);
-
-    // Output the plane equation
-    cout << "\nPlane equation: " << a << "(x - " << points[0][0] << ") + "
-         << b << "(y - " << points[0][1] << ") + "
-         << c << "(z - " << points[0][2] << ") = 0" << endl;
-
-    cout << "This simplifies to: " << a << "x + " << b << "y + " << c << "z = " << -d << endl;
 
     // Calculate z-values for new points
     double newPoints[4][2] = {
@@ -149,12 +130,6 @@ int main(int argc, char **argv) {
         {-3, -18},
         {9.5, -18}
     };
-
-    double newZ[4];
-    for (int i = 0; i < 4; i++) {
-        newZ[i] = -(a * newPoints[i][0] + b * newPoints[i][1] + d) / c;
-        cout << "Calculated z-value at (" << newPoints[i][0] << ", " << newPoints[i][1] << "): z = " << newZ[i] << endl;
-    }
 
     // Adjust all z-values so the lowest one becomes 0
     double min_z = newZ[0];
@@ -171,11 +146,6 @@ int main(int argc, char **argv) {
         z_values[i] -= 5; // Subtract 5 as per requirement
     }
 
-    // Print the adjusted z-values (y2 values)
-    cout << "\nAdjusted y2 values (z - 5):" << endl;
-    for (int i = 0; i < 4; i++) {
-        cout << "For point (" << newPoints[i][0] << ", " << newPoints[i][1] << "): y2 = " << z_values[i] << endl;
-    }
 
     // Calculate theta1 for each y2 using the equation y2 = 3sin(theta1) - 3.5
     cout << "\nCalculated theta1 values:" << endl;

@@ -1,0 +1,7 @@
+
+<launch>
+    <node name="master_node" pkg="lg" type="master" output="screen"/>
+    <node name="serial" pkg="lg" type="serial" output="screen"/>
+    <node name="rangefinder" pkg="lg" type="rangefinder" output="screen"/>
+</launch>
+
